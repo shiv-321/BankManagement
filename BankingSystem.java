@@ -50,8 +50,33 @@ public class BankingSystem {
 				String password = sc.nextLine();
 				ResultSet rs = c.prepareStatement("select password from account where accnum = " + accNums).executeQuery();
 				if(rs.next()) {
-					if(password.equals(rs.getString(1)))
+					if(password.equals(rs.getString(1))) {
 						System.out.println("login successful");
+						System.out.println("1. deposit");
+						System.out.println("2. withdraw");
+						System.out.println("3. check balance");
+						System.out.println("4. transfer");
+						System.out.println("Enter the choice......");
+						int choice1 = Integer.parseInt(sc.nextLine());
+						Transction trans = new Transction();
+						if(choice1==1) {
+							System.out.println("Enter the deposit amount...");
+							int dep = Integer.parseInt(sc.nextLine());
+							trans.deposit(accNums, dep);
+							System.out.println("amount deposited");
+							
+						}else if(choice1 ==2) {
+							System.out.println("Enter the withdrawal amount...");
+							int withdraw = Integer.parseInt(sc.nextLine());
+							trans.withdraw(accNums, withdraw);
+							System.out.println("Amount is deducted");
+						}else if(choice1==3) {
+							System.out.println("Your balance is " + trans.getBalance(accNums));
+							
+						}
+					}
+						
+					
 					else 
 						System.out.println("Password mismatched");
 				}
