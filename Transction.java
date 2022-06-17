@@ -35,5 +35,22 @@ public class Transction {
 			ps.setString(2, accNum);
 			ps.execute();
 		}
+		
 	}
-}
+	public void transfer(String accNum1, String accNum2, int amount) throws Exception {
+		int balCheck = getBalance(accNum1);
+		if(amount>balCheck) {
+			System.out.println("Insufficient balance");
+		}else {
+			int bal2 = getBalance(accNum2);
+				PreparedStatement ps = c.prepareStatement("update account set balance = ? where accnum = ? ");
+				ps.setInt(1, balCheck - amount);
+				ps.setString(2, accNum1);
+				ps.execute();
+				ps.setInt(1, bal2+amount);
+				ps.setString(2, accNum2);
+				ps.execute();
+			}
+		}
+	}
+

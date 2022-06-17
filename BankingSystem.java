@@ -73,6 +73,13 @@ public class BankingSystem {
 						}else if(choice1==3) {
 							System.out.println("Your balance is " + trans.getBalance(accNums));
 							
+						}else if(choice1==4) {
+							System.out.println("Enter account number to transfer the amount");
+							String accTo = sc.nextLine();
+							System.out.println("Enter amount....");
+							int amount = Integer.parseInt(sc.nextLine());
+							trans.transfer(accNums, accTo, amount);
+							System.out.println("Amount is transfered");
 						}
 					}
 						
